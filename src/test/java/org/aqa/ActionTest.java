@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static java.lang.String.format;
+import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
 import static org.apache.http.HttpStatus.SC_FORBIDDEN;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.aqa.steps.WireMockSteps.verifyDoActionRequestQty;
@@ -46,7 +47,7 @@ public class ActionTest extends BaseTest {
     @MethodSource("validationToken")
     @DisplayName("Validation token")
     void validationTokenDoActionRequestTest(String token) {
-        ResponseMessage responseMessage = getResponseMessage(token, ACTION.name(), SC_FORBIDDEN);
+        ResponseMessage responseMessage = getResponseMessage(token, ACTION.name(), SC_BAD_REQUEST);
 
         assertResponse(responseMessage, VALIDATION_LOGIN_ERROR_MESSAGE);
         verifyDoActionRequestQty(0);

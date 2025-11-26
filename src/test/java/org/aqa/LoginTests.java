@@ -17,7 +17,6 @@ import static org.aqa.util.RestActions.LOGIN;
 
 public class LoginTests extends BaseTest {
 
-
     @AfterEach
     void clearAuthRequestHistory() {
         removeServeEvents(postRequestedFor(urlPathMatching("/auth")));
@@ -39,7 +38,6 @@ public class LoginTests extends BaseTest {
         verifyAuthRequestQty(1);
     }
 
-
     @Test
     void registeredTokenLoginTest() {
         String authToken = getAuthToken(true);
@@ -50,38 +48,5 @@ public class LoginTests extends BaseTest {
         assertResponse(responseMessage, format(LOGIN_REGISTERED_TOKEN_ERROR_MESSAGE, authToken));
         verifyAuthRequestQty(0);
     }
-
-
-//    private static ResponseMessage getResponseMessage(String token) {
-//        ResponseMessage responseMessage = given().spec(specification)
-//                .log().all()
-//                .when().params(Map.of(ACTION_PARAM, LOGIN.name(),
-//                        TOKEN_PARAM, token))
-//                .post()
-//                .prettyPeek()
-//                .then()
-//                .statusCode(400).extract().body().as(ResponseMessage.class);
-//        return responseMessage;
-//    }
-
-
-//    @Test
-//    void name() {
-////        getAuthToken();
-//        given().spec(specification)
-////                .urlEncodingEnabled(false)
-//                .log().all()
-//                .when().params(Map.of(ACTION_PARAM, LOGIN.name(),
-//                        TOKEN_PARAM, "ABC1ABCDE9ABCDEFABC1ABCDE9ABCDEF"))
-////                .body(testPet)
-//                .post()
-//                .prettyPeek()
-//                .then()
-//                .statusCode(409);
-//        List<ServeEvent> allServeEvents = getAllServeEvents();
-//        System.out.println(allServeEvents);
-//        verify(moreThan(5), postRequestedFor(urlEqualTo("/auth")));
-//    }
-
 
 }
