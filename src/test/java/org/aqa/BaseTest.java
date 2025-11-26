@@ -37,17 +37,16 @@ public class BaseTest {
     static void beforeAll() {
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
         RestAssured.filters(new AllureRestAssured());
-        wireMockServer = new WireMockServer(WireMockConfiguration.options().port(port));
-        wireMockServer.start();
-        WireMock.configureFor("localhost", port);
-
-        RestAssured.baseURI = "http://localhost:8080/endpoint";//TestProperties.getTestDataProps().getProperty("baseUrl");
+        RestAssured.baseURI = "http://localhost:8080/endpoint";
         specification = new RequestSpecBuilder()
                 .setContentType(URLENC)
                 .setAccept(ContentType.JSON)
                 .setUrlEncodingEnabled(true)
                 .addHeader("X-Api-Key", "qazWSXedc").build();
 
+        wireMockServer = new WireMockServer(WireMockConfiguration.options().port(port));
+        wireMockServer.start();
+        WireMock.configureFor("localhost", port);
         stubFor(post(urlPathMatching("/auth"))
                 .willReturn(aResponse()
                         .withStatus(200)
