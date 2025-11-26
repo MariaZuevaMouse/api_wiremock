@@ -16,6 +16,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
 import java.util.Map;
+import java.util.stream.Stream;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static io.qameta.allure.Allure.step;
@@ -107,51 +108,8 @@ public class BaseTest {
         }
     }
 
+    static Stream<String> validationToken() {
+        return Stream.of("", "null", " ", getAuthToken(true).toLowerCase(), getAuthToken(true) + "1", getAuthToken(true).substring(0, 31), getAuthToken(false));
+    }
 
-//    @BeforeEach
-//    void setUp() {
-////        stubFor(post(urlPathMatching("/auth"))
-////                .willReturn(aResponse()
-////                                .withStatus(200)
-////                                .withHeader("Content-Type", "application/json")
-//////                        .withBody("\"testing-library\": \"WireMock\"")
-////                ));
-////        stubFor(post(urlPathMatching("/doAction"))
-////                .willReturn(aResponse()
-////                                .withStatus(200)
-////                                .withHeader("Content-Type", "application/json")
-//////                        .withBody("\"testing-library\": \"WireMock\"")
-////                ));
-//    }
-
-//    @Test
-//    void name() {
-//        getValidToken();
-//        given().spec(specification)
-////                .urlEncodingEnabled(false)
-//                .log().all()
-//                .when().params(Map.of(ACTION_PARAM, LOGIN.name(),
-//                        TOKEN_PARAM, "ABC1ABCDE9ABCDEFABC1ABCDE9ABCDEF"))
-
-    /// /                .body(testPet)
-//                .post()
-//                .prettyPeek()
-//                .then()
-//                .statusCode(409);
-//        List<ServeEvent> allServeEvents = getAllServeEvents();
-//        System.out.println(allServeEvents);
-//        verify(moreThan(5), postRequestedFor(urlEqualTo("/auth")));
-//    }
-
-    //    @RegisterExtension
-//    static WireMockExtension wireMock = WireMockExtension.newInstance()
-//            .options(wireMockConfig().port(8888))
-//            .build();
-
-//    static  String getInvalidToken(){
-//        RgxGen rgxGen = RgxGen.parse("^[0-9A-F]{32}$");                     // Create generator
-//        String token = rgxGen.generate();
-//        log.info("generated token");
-//        rgxGen.generateNotMatching();
-//    }
 }

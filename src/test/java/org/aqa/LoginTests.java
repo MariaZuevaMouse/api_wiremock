@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.stream.Stream;
-
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static java.lang.String.format;
 import static org.apache.http.HttpStatus.*;
@@ -19,9 +17,6 @@ import static org.aqa.util.RestActions.LOGIN;
 
 public class LoginTests extends BaseTest {
 
-    private static Stream<String> validationLogin() {
-        return Stream.of("", "null", " ", getAuthToken(true).toLowerCase(), getAuthToken(true) + "1", getAuthToken(true).substring(0, 31), getAuthToken(false));
-    }
 
     @AfterEach
     void clearAuthRequestHistory() {
@@ -29,8 +24,8 @@ public class LoginTests extends BaseTest {
     }
 
     @ParameterizedTest(name = "{displayName}: token = {0}")
-    @MethodSource("validationLogin")
-    @DisplayName("Validation login")
+    @MethodSource("validationToken")
+    @DisplayName("Validation token")
     void validationLoginTest(String token) {
         ResponseMessage responseMessage = getResponseMessage(token, LOGIN.name(), SC_BAD_REQUEST);
         assertResponse(responseMessage, VALIDATION_LOGIN_ERROR_MESSAGE);

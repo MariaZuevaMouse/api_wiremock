@@ -16,6 +16,6 @@ public class WireMockSteps {
 
     @Step("Verify post request to mock /doAction qty =  {count}")
     public static void verifyDoActionRequestQty(int count){
-        verify(count, postRequestedFor(urlEqualTo("/auth")));
+        verify(count, postRequestedFor(urlEqualTo("/doAction")));
     }
 }
