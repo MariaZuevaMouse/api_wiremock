@@ -108,7 +108,9 @@ public class BaseTest {
     }
 
     static Stream<String> validationToken() {
-        return Stream.of("", "null", " ", getAuthToken(true).toLowerCase(), getAuthToken(true) + "1", getAuthToken(true).substring(0, 31), getAuthToken(false));
+        return Stream.of("", "null", " ", getAuthToken(true).toLowerCase(),
+                getAuthToken(true) + "1", getAuthToken(true).substring(0, 31),
+                getAuthToken(false));
     }
 
 }
