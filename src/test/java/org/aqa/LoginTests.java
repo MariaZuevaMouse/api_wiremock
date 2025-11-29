@@ -43,8 +43,8 @@ public class LoginTests extends BaseTest {
         String authToken = getAuthToken(true);
         getResponseMessage(authToken, LOGIN.name(), SC_OK);
         removeServeEvents(postRequestedFor(urlPathMatching("/auth")));
-        ResponseMessage responseMessage = getResponseMessage(authToken,
-                LOGIN.name(), SC_CONFLICT);
+        ResponseMessage responseMessage = getResponseMessage(authToken, LOGIN.name(), SC_CONFLICT);
+
         assertResponse(responseMessage, format(LOGIN_REGISTERED_TOKEN_ERROR_MESSAGE, authToken));
         verifyAuthRequestQty(0);
     }
