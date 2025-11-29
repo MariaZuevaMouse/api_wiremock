@@ -65,7 +65,7 @@ public class BaseTest {
     }
 
     static String getAuthToken(boolean isValid) {
-        RgxGen rgxGen = RgxGen.parse("^[0-9A-Z]{32}$");                     // Create generator
+        RgxGen rgxGen = RgxGen.parse("^[0-9A-Z]{32}$");
         String generatedToken = isValid ? rgxGen.generate() : rgxGen.generateNotMatching();
         log.info("generated token - {}", generatedToken);
         return generatedToken;
