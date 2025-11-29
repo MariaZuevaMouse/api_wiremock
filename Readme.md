@@ -4,7 +4,7 @@
 [Test_task](task.md)
 
 run application
-```java
+```shell
 java -jar -Dsecret=qazWSXedc -Dmock=http://localhost:8888/ internal-0.0.1-SNAPSHOT.jar 
 ```
 
